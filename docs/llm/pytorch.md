@@ -1003,7 +1003,7 @@ As you can see, all negative inputs were clamped to zero, while positive inputs 
 This is the modern standard for high-performance models, especially Transformers like BERT and GPT. It's a smoother, "probabilistic" version of ReLU. Instead of a hard "off" switch at zero, it smoothly de-weights inputs based on their magnitude.
 
 *   **Formula:** The exact formula is `GELU(x) = x * Φ(x)`, where `Φ(x)` is the Cumulative Distribution Function (CDF) of the standard normal distribution. A common approximation is:
-    $$ \text{GELU}(x) \approx 0.5x \left(1 + \tanh\left[\sqrt{\frac{2}{\pi}}\left(x + 0.044715x^3\right)\right]\right) $$
+    \(\text{GELU}(x) \approx 0.5x (1 + \tanh(\sqrt{2/\pi}(x + 0.044715x^3)))\)
 *   **Behavior:** It acts like ReLU for large positive values, but it smoothly curves to zero for negative values, allowing some gradient to flow through even for negative inputs.
 *   **Learnable Parameters:** No. It's a fixed mathematical function.
 
@@ -1034,7 +1034,7 @@ Notice the difference from ReLU: the negative inputs are not zero but are "squas
 Softmax is a special activation function used almost exclusively on the **final output layer of a classification model**. Its job is to take a vector of raw, unbounded scores (called **logits**) and convert them into a probability distribution.
 
 *   **Formula:** For a vector of logits `z = [z_1, z_2, ..., z_K]`, the Softmax of the i-th element is:
-    $$ \text{Softmax}(z_i) = \frac{e^{z_i}}{\sum_{j=1}^{K} e^{z_j}} $$
+    \(\text{Softmax}(z_i) = \frac{e^{z_i}}{\sum_{j=1}^{K} e^{z_j}}\)
 *   **Behavior:** It exponentiates every logit (making them all positive) and then normalizes them by dividing by the sum of all exponentiated logits. The result is a vector where:
     1.  Every element is between 0 and 1.
     2.  All elements sum to 1.
